@@ -1,5 +1,5 @@
 
-from chess2_event_display import *
+from event_display import *
 
 def print_event_stats(events): # a Python list of event_data objects
   nEvents = len(events)

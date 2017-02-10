@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from chess2_data_classes import *
+from data_classes import *
 
 # the_event is a chess2_event object
 # stack_hits determines if we will count the hits in each pixel (if True)

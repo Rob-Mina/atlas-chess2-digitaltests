@@ -7,7 +7,7 @@ import pyrogue
 import time
 import pickle
 
-from chess2_data_classes import *
+from data_classes import *
 
 class EventReader(rogue.interfaces.stream.Slave):
 
