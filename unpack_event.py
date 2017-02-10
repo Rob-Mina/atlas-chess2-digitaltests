@@ -43,13 +43,23 @@ def main(arg1,arg2):
 #  print(len(eventReader._getEvents()))
 #  condensed_data = []
 #  expanded_data = []
-#  for event in eventReader._getEvents():
-#    print(event._getCondensedData()._getData())
-#    condensed_data.append(event._getCondensedData()._getData())
-#    expanded_data.append(event._getExpandedData()._getData())
+  nhits = [ 0, 0, 0 ]
+  events = eventReader._getEvents()
+  for event in events:
+    for i_asic in range(3):
+      nhits[i_asic] += event._getCondensedData()._getNhits()[i_asic]
+  print( "No. events = %d"%len(events) )
+  print( "Total hits = %d,%d,%d"%(nhits[0],nhits[1],nhits[2]) )
+  print( "Avg hits per event = %.3f,%.3f,%.3f"%(nhits[0]/len(events),nhits[1]/len(events),nhits[2]/len(events)) )
 
-  pickle.dump(eventReader._getEvents(), open(arg2,'wb'), pickle.HIGHEST_PROTOCOL)
+
+  pickle.dump(events, open(arg2,'wb'), pickle.HIGHEST_PROTOCOL)
 
 if __name__ == '__main__':
-  main(sys.argv[1],sys.argv[2])
+  outfname = 'data.pkl'
+  if len(sys.argv) < 3:
+    outfname = sys.argv[1][:-3] + "pkl"
+  else:
+    outfname = sys.argv[2]
+  main(sys.argv[1],outfname)
 
