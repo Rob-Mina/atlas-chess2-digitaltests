@@ -5,9 +5,9 @@ import pickle
 
 
 def makeHistDictionary(ASICNum,eventNum):
-	hPixelMap = ROOT.TH2D("asic%i%i"%(ASICNum,eventNum),"asic%i%i"%(ASICNum,eventNum),32,0,31,128,0,127)
-	hValidData= ROOT.TH1I("vasic%i%i"%(ASICNum,eventNum),"vasic%i%i"%(ASICNum,eventNum),256,0,255)
-	hMultiHit = ROOT.TH1I("masic%i%i"%(ASICNum,eventNum),"masic%i%i"%(ASICNum,eventNum),256,0,255)
+	hPixelMap = ROOT.TH2D("asic%i_%i"%(ASICNum,eventNum),"asic%i_%i"%(ASICNum,eventNum),32,0,31,128,0,127)
+	hValidData= ROOT.TH1C("vasic%i_%i"%(ASICNum,eventNum),"vasic%i_%i"%(ASICNum,eventNum),256,0,255)
+	hMultiHit = ROOT.TH1C("masic%i_%i"%(ASICNum,eventNum),"masic%i_%i"%(ASICNum,eventNum),256,0,255)
 
 	histDict = {"pixelMap" : hPixelMap, "isValidData" : hValidData, "isMultiHit" : hMultiHit}
 
