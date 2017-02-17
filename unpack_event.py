@@ -38,9 +38,9 @@ def generate_summary_histograms( events ):
     ASICList = []
     for asic in range(3):
       histDict = { }
-      histDict["pixelMap"] = ROOT.TH2D("asic%i_%i"%(asic,i_evt),"asic%i_%i"%(asic,i_evt),32,0,31,128,0,127)
-      histDict["isValidData"] = ROOT.TH1C("asic%i_%i"%(asic,i_evt),"asic%i_%i"%(asic,i_evt),256,0,255)
-      histDict["isMultiHit"] = ROOT.TH1C("asic%i_%i"%(asic,i_evt),"asic%i_%i"%(asic,i_evt),256,0,255)
+      histDict["pixelMap"] = ROOT.TH2D("asic%i_%i"%(asic+1,i_evt),"asic%i_%i"%(asic+1,i_evt),32,0,31,128,0,127)
+      histDict["isValidData"] = ROOT.TH1C("vasic%i_%i"%(asic+1,i_evt),"vasic%i_%i"%(asic+1,i_evt),256,0,255)
+      histDict["isMultiHit"] = ROOT.TH1C("masic%i_%i"%(asic+1,i_evt),"masic%i_%i"%(asic+1,i_evt),256,0,255)
       ASICList.append(histDict)
     expandedData = event._getExpandedData()._getData()
     for timeSlice in range(256):
@@ -94,8 +94,8 @@ def main( binFileName, verbose=False, pklFileName='', rootFileName='' ):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='CHESS2 raw data unpacker')
   parser.add_argument('--binFileName', action='store', dest='binFileName', default='None', help='Path to CHESS2 binary (raw) data')
-  parser.add_argument('--pklFileName', action='store', dest='pklFileName', default='None', help='Path to pickle file to write structured data. Will contain a Python list of Chess2EventData objects. Leave blank to omit storing the data.')
-  parser.add_argument('--rootFileName', action='store', dest='rootFileName', default='None', help='Path to ROOT file to write summary histograms. Will contain 9*(number of events) histograms with hitmaps, valid data maps, and multihit maps for each ASIC/event.')
+  parser.add_argument('--pklFileName', action='store', dest='pklFileName', default='', help='Path to pickle file to write structured data. Will contain a Python list of Chess2EventData objects. Leave blank to omit storing the data.')
+  parser.add_argument('--rootFileName', action='store', dest='rootFileName', default='', help='Path to ROOT file to write summary histograms. Will contain 9*(number of events) histograms with hitmaps, valid data maps, and multihit maps for each ASIC/event.')
   parser.add_argument('--verbosity', action='store', dest='verbosity', default='basic', help='Verbosity level [basic|extended]')
 
   options = parser.parse_args()
@@ -105,7 +105,7 @@ if __name__ == '__main__':
   rootFileName = options.rootFileName
   verbosity = options.verbosity
 
-  if not binFileName:
+  if binFileName=='None':
     print("Cannot run without specifying binFileName.")
   else:
     main( binFileName, verbosity != 'basic', pklFileName if pklFileName else '', rootFileName if rootFileName else '' )
