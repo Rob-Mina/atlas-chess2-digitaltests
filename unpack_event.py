@@ -94,7 +94,7 @@ def main( binFileName, verbose=False, pklFileName='', rootFileName='' ):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='CHESS2 raw data unpacker')
   parser.add_argument('--binFileName', action='store', dest='binFileName', default='None', help='Path to CHESS2 binary (raw) data')
-  parser.add_argument('--pklFileName', action='store', dest='pklFileName', default='', help='Path to pickle file to write structured data. Will contain a Python list of Chess2EventData objects. Leave blank to omit storing the data.')
+  parser.add_argument('--pklFileName', action='store', dest='pklFileName', default='None', help='Path to pickle file to write structured data. Will contain a Python list of Chess2EventData objects. Empty string writes to <binFileName>.pkl. No argument suppresses writing of event list to pickle.')
   parser.add_argument('--rootFileName', action='store', dest='rootFileName', default='', help='Path to ROOT file to write summary histograms. Will contain 9*(number of events) histograms with hitmaps, valid data maps, and multihit maps for each ASIC/event.')
   parser.add_argument('--verbosity', action='store', dest='verbosity', default='basic', help='Verbosity level [basic|extended]')
 
@@ -104,6 +104,11 @@ if __name__ == '__main__':
   pklFileName = options.pklFileName
   rootFileName = options.rootFileName
   verbosity = options.verbosity
+
+  if pklFileName=='':
+    pklFileName = binFileName+'.pkl'
+  if pklFileName=='None':
+    pklFileName = ''
 
   if binFileName=='None':
     print("Cannot run without specifying binFileName.")
