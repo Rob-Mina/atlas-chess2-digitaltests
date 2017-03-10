@@ -47,7 +47,7 @@ def generate_summary_histograms( events ):
       for asic,histDict in enumerate(ASICList):
         ASICData = expandedData[asic][timeSlice]
         if (ASICData[3]):
-          histDict["pixelMap"].Fill(ASICData[0],ASICData[1])
+          histDict["pixelMap"].Fill(ASICData[1],ASICData[0])
           histDict["isValidData"].Fill(timeSlice)
         if (ASICData[2]):
           histDict["isMultiHit"].Fill(timeSlice)

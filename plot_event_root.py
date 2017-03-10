@@ -31,7 +31,7 @@ def makePlotsFromPickle( fileName, maxEvents, saveAs ):
       for iter,ASIC in enumerate(ASICList):
         ASICData = expandedData[iter][timeSlice]
         if(ASICData[3]):
-          ASIC["pixelMap"].Fill(ASICData[0],ASICData[1])
+          ASIC["pixelMap"].Fill(ASICData[1],ASICData[0])
           ASIC["isValidData"].Fill(timeSlice)
         if(ASICData[2]):
           ASIC["isMultiHit"].Fill(timeSlice)
