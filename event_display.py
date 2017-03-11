@@ -51,7 +51,7 @@ def make_ROOT_event_display(ASIC,ASICNum,eventNum,saveAs):
   ASIC["isMultiHit"].GetYaxis().SetNdivisions(2)
   ASIC["isMultiHit"].Draw()
 
-  c.Print("%s_event%i_asic%i.png"%(saveAs,eventNum,ASICNum))
+  c.Print("%s_event%i_asic%i.pdf"%(saveAs,eventNum,ASICNum))
 
 # the_event is a chess2_event object
 # stack_hits determines if we will count the hits in each pixel (if True)
