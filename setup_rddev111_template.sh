@@ -12,7 +12,7 @@ source /home/robmina/usr/local/boost/1.62.0_p3/settings.sh
 #source /afs/slac.stanford.edu/g/reseng/zeromq/4.2.0/settings.csh
 source /home/robmina/usr/local/zeromq/4.2.0/settings.sh
 #source /afs/slac.stanford.edu/g/reseng/epics/base-R3-16-0/settings.csh
-source /home/robmina/usr/local/epics/base-3.16.0.1
+source /home/robmina/usr/local/epics/base-3.16.0.1/settings.sh
 
 # Setup python path
 export PYTHONPATH=${PWD}/python:${SURF_DIR}/python:${FEB_DIR}/python:${ROGUE_DIR}/python
